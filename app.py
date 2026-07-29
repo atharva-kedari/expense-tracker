@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import requests
 
 app = Flask(__name__)
-app.secret_key = "change-this-secret-key"
+app.secret_key = os.environ.get("SECRET_KEY", "change-this-secret-key")
 DB_PATH = os.path.join(os.path.dirname(__file__), "expenses.db")
 
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
