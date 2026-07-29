@@ -86,9 +86,15 @@ def ai_spending_insight(total, by_category):
 
 # ---------- Auth routes ----------
 
+# @app.route("/")
+# def home():
+#     return redirect(url_for("dashboard" if "user_id" in session else "login"))
+
 @app.route("/")
 def home():
-    return redirect(url_for("dashboard" if "user_id" in session else "login"))
+    if "user_id" in session:
+        return redirect(url_for("dashboard"))
+    return render_template("index.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
