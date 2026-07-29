@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="shell glass">
+  <div class="center-title">
+    <h1>Create your account</h1>
+    <p>Start tracking your expenses</p>
+  </div>
+  <form method="POST" class="glass-form">
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button class="glass-btn" type="submit">Register</button>
+  </form>
+  <p class="link-line">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
+</div>
+{% endblock %}

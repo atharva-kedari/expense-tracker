@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Log In{% endblock %}
+{% block content %}
+<div class="shell glass">
+  <div class="center-title">
+    <h1>Welcome back</h1>
+    <p>Log in to your expense tracker</p>
+  </div>
+  <form method="POST" class="glass-form">
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button class="glass-btn" type="submit">Log In</button>
+  </form>
+  <p class="link-line">No account? <a href="{{ url_for('register') }}">Register</a></p>
+</div>
+{% endblock %}

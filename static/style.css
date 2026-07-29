@@ -1,0 +1,167 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+svg { display: block; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  min-height: 100vh;
+  padding: 36px 12px 60px;
+  -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(circle at 15% 10%, #ff8a5c 0%, transparent 45%),
+    radial-gradient(circle at 85% 15%, #6a8dff 0%, transparent 50%),
+    radial-gradient(circle at 25% 85%, #ffb84d 0%, transparent 45%),
+    radial-gradient(circle at 90% 80%, #7c5cff 0%, transparent 50%),
+    linear-gradient(160deg, #cfe0ff 0%, #ffe3d1 100%);
+  background-color: #dbe4f5;
+  background-attachment: fixed;
+}
+
+.phone { max-width: 400px; margin: 0 auto; position: relative; }
+
+/* Base glass surface — reused on every card */
+.glass {
+  background: rgba(255,255,255,0.38);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.55);
+  box-shadow: 0 8px 32px rgba(31,38,60,0.14), inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.shell.glass { border-radius: 40px; padding: 22px 18px 24px; }
+
+/* Header */
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+.greeting p { font-size: 0.72rem; color: #4a4a5a; font-weight: 600; opacity: 0.7; }
+.greeting h1 { font-size: 1.2rem; font-weight: 800; color: #1c1c28; margin-top: 3px; letter-spacing: -0.02em; }
+.icon-btn.glass {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #33334a; text-decoration: none;
+}
+
+/* Balance card */
+.balance-card {
+  background: linear-gradient(160deg, rgba(28,28,34,0.72) 0%, rgba(10,10,14,0.78) 100%);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 30px;
+  padding: 22px 22px 20px;
+  color: #fff;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(15,15,20,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.balance-card::after {
+  content: "";
+  position: absolute; right: -50px; top: -60px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,138,92,0.35) 0%, transparent 70%);
+}
+.balance-top { display: flex; justify-content: space-between; align-items: flex-start; position: relative; z-index: 1; }
+.balance-amt { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; }
+.balance-label { font-size: 0.72rem; color: rgba(255,255,255,0.55); margin-top: 3px; font-weight: 500; }
+.balance-bar { height: 4px; border-radius: 2px; margin: 18px 0 16px; background: rgba(255,255,255,0.14); overflow: hidden; }
+.balance-bar-fill { height: 100%; background: #ff8a5c; }
+.card-bottom { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
+.card-dots { letter-spacing: 3px; color: rgba(255,255,255,0.45); font-size: 0.82rem; font-weight: 600; }
+
+/* Pills */
+.pill-row { display: flex; gap: 10px; margin-bottom: 18px; }
+.pill.glass { flex: 1; border-radius: 20px; padding: 13px 14px; display: flex; align-items: center; gap: 11px; }
+.pill-icon { width: 30px; height: 30px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.pill.a .pill-icon { background: rgba(47,168,96,0.85); color: #fff; }
+.pill.b .pill-icon { background: rgba(226,121,63,0.85); color: #fff; }
+.pill-pct { font-weight: 700; font-size: 0.92rem; color: #1c1c28; letter-spacing: -0.01em; }
+.pill-label { font-size: 0.66rem; color: #4a4a5a; opacity: 0.75; font-weight: 500; margin-top: 1px; }
+
+/* Section titles */
+.section-title { display: flex; justify-content: space-between; align-items: center; margin: 20px 0 12px; }
+.section-title span { font-size: 0.95rem; font-weight: 700; color: #1c1c28; letter-spacing: -0.01em; }
+.section-title a { font-size: 0.72rem; color: #4a4a5a; opacity: 0.6; font-weight: 600; text-decoration: none; }
+
+/* Transaction rows */
+.tx-row.glass { display: flex; align-items: center; gap: 13px; border-radius: 22px; padding: 12px 13px; margin-bottom: 9px; }
+.tx-icon { width: 42px; height: 42px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.tx-info { flex: 1; min-width: 0; }
+.tx-name { font-size: 0.86rem; font-weight: 600; color: #1c1c28; letter-spacing: -0.01em; }
+.tx-date { font-size: 0.68rem; color: #4a4a5a; opacity: 0.65; margin-top: 1px; font-weight: 500; }
+.tx-actions { display: flex; align-items: center; gap: 10px; }
+.tx-amt { font-size: 0.86rem; font-weight: 700; color: #1c1c28; letter-spacing: -0.01em; white-space: nowrap; }
+.tx-actions a { color: #4a4a5a; opacity: 0.5; text-decoration: none; }
+
+/* Stats / generic content card */
+.stats-card.glass { border-radius: 26px; padding: 20px; margin-top: 18px; }
+.stats-top { display: flex; justify-content: space-between; align-items: center; }
+.stats-title { font-size: 0.88rem; font-weight: 700; color: #1c1c28; letter-spacing: -0.01em; }
+.stats-amt { font-size: 1.5rem; font-weight: 800; margin-top: 10px; letter-spacing: -0.02em; color: #1c1c28; }
+.stats-date { font-size: 0.68rem; color: #4a4a5a; opacity: 0.65; margin-top: 2px; font-weight: 500; }
+.stats-amt.up { color: #b3432f; }
+.stats-amt.down { color: #2f8a52; }
+
+.cat-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.4); }
+.cat-row:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-left { display: flex; align-items: center; gap: 11px; }
+.cat-icon { width: 34px; height: 34px; border-radius: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.cat-name { font-size: 0.82rem; font-weight: 600; color: #1c1c28; }
+.cat-sub { font-size: 0.66rem; color: #4a4a5a; opacity: 0.65; font-weight: 500; margin-top: 1px; }
+.cat-amt { font-size: 0.82rem; font-weight: 700; color: #1c1c28; white-space: nowrap; }
+
+.insight-text { font-size: 0.81rem; color: #33334a; opacity: 0.85; line-height: 1.6; margin-top: 10px; font-weight: 450; }
+
+/* Bottom nav */
+.nav.glass {
+  display: flex; justify-content: center; gap: 40px; align-items: center;
+  border-radius: 999px; padding: 13px 20px; margin-top: 22px;
+}
+.nav-icon { color: rgba(28,28,34,0.35); display: flex; text-decoration: none; }
+.nav-icon.active { color: #1c1c28; }
+
+/* Forms (add expense, edit, login, register) */
+.glass-form { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; }
+.glass-form .row2 { display: flex; gap: 10px; }
+.glass-form input, .glass-form select {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  background: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.7);
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: #1c1c28;
+  flex: 1;
+}
+.glass-form input::placeholder { color: #8a8a95; }
+.glass-btn {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  background: linear-gradient(160deg, rgba(28,28,34,0.95), rgba(10,10,14,0.95));
+  color: #fff;
+  border: none;
+  padding: 13px;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px -4px rgba(0,0,0,0.4);
+}
+
+.flash-box {
+  background: rgba(226,121,63,0.25);
+  border: 1px solid rgba(226,121,63,0.5);
+  border-radius: 16px;
+  padding: 10px 14px;
+  font-size: 0.78rem;
+  color: #7a3419;
+  margin-bottom: 14px;
+}
+
+.center-title { text-align: center; margin: 10px 0 20px; }
+.center-title h1 { font-size: 1.4rem; font-weight: 800; color: #1c1c28; letter-spacing: -0.02em; }
+.center-title p { font-size: 0.78rem; color: #4a4a5a; opacity: 0.7; margin-top: 4px; }
+
+.link-line { text-align: center; font-size: 0.78rem; color: #4a4a5a; opacity: 0.75; margin-top: 16px; }
+.link-line a { color: #1c1c28; font-weight: 700; text-decoration: none; }
+
+.preview-empty { text-align: center; font-size: 0.8rem; color: #4a4a5a; opacity: 0.6; padding: 20px 0; }
+
+.footnote { text-align: center; font-size: 0.68rem; color: #4a4a5a; opacity: 0.55; margin-top: 18px; font-weight: 500; }

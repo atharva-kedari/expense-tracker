@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Edit Expense{% endblock %}
+{% block content %}
+<div class="shell glass">
+
+  <div class="header">
+    <div class="greeting">
+      <p>Editing entry</p>
+      <h1>{{ expense.title }}</h1>
+    </div>
+    <a class="icon-btn glass" href="{{ url_for('dashboard') }}" title="Back">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    </a>
+  </div>
+
+  <div class="stats-card glass" style="margin-top:0;">
+    <div class="section-title" style="margin-top:0;"><span>Edit Expense</span></div>
+    <form method="POST" class="glass-form">
+      <input type="text" name="title" placeholder="What was it for…" value="{{ expense.title }}" required>
+      <div class="row2">
+        <input type="number" step="0.01" name="amount" placeholder="Amount" value="{{ expense.amount }}" required>
+        <select name="category">
+          {% for c in categories %}
+          <option value="{{ c }}" {{ "selected" if c == expense.category else "" }}>{{ c }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="row2">
+        <input type="date" name="expense_date" value="{{ expense.expense_date }}">
+        <input type="text" name="note" placeholder="Note (optional)" value="{{ expense.note or '' }}">
+      </div>
+      <button class="glass-btn" type="submit">Save Changes</button>
+    </form>
+  </div>
+
+  <p class="link-line"><a href="{{ url_for('delete_expense', expense_id=expense.id) }}">Delete this expense</a></p>
+
+</div>
+{% endblock %}
