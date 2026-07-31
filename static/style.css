@@ -121,6 +121,7 @@ body {
 /* Forms (add expense, edit, login, register) */
 .glass-form { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; }
 .glass-form .row2 { display: flex; gap: 10px; }
+.glass-form .row2 > * { min-width: 0; }
 .glass-form input, .glass-form select {
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
