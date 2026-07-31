@@ -1,5 +1,6 @@
 import os
 import sqlite3
+import math
 from datetime import datetime, timedelta
 from collections import defaultdict
 from flask import Flask, render_template, request, redirect, url_for, session, flash
@@ -151,6 +152,8 @@ def dashboard():
 
         try:
             amount = float(request.form["amount"])
+            if not math.isfinite(amount):
+                raise ValueError
         except (ValueError, KeyError):
             flash("Amount must be a valid number.")
             return redirect(url_for("dashboard"))
@@ -208,6 +211,8 @@ def edit_expense(expense_id):
         title = request.form["title"].strip()
         try:
             amount = float(request.form["amount"])
+            if not math.isfinite(amount):
+                raise ValueError
         except (ValueError, KeyError):
             flash("Amount must be a valid number.")
             conn.close()
@@ -218,11 +223,13 @@ def edit_expense(expense_id):
             conn.close()
             return redirect(url_for("edit_expense", expense_id=expense_id))
 
+        expense_date = request.form.get("expense_date") or expense["expense_date"]
+
         conn.execute(
             "UPDATE expenses SET title=?, amount=?, category=?, note=?, expense_date=? "
             "WHERE id=? AND user_id=?",
             (title, amount, request.form["category"], request.form.get("note", "").strip(),
-             request.form["expense_date"], expense_id, session["user_id"]),
+             expense_date, expense_id, session["user_id"]),
         )
         conn.commit()
         conn.close()
